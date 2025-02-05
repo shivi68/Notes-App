@@ -1,0 +1,82 @@
+
+
+<mat-toolbar color="accent">
+  <img src="/assets/logo1.png" alt="" style="height: 50px">
+    <span><a mat-icon-button routerLink="/" style="text-decoration: none;">Notes Application</a></span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button routerLink="/user-login" ><mat-icon>arrow_back</mat-icon>Back</button>
+    <!-- <button mat-icon-button routerLink="/"><mat-icon>home</mat-icon></button> -->
+  </mat-toolbar>
+  
+  
+  <div class="bootstrap-wrapper">
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="container text-center">
+            <img class="img-fluid" style="width: 100px;" src="/assets/register.jpg" alt="">
+          </div>
+  
+          <h1 class="text-center mt-3">Register here!!</h1>
+  
+          <!-- Creating Forms -->
+      <form #registerForm="ngForm" (ngSubmit)="registerUser()">
+          
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-icon matSuffix>person</mat-icon>
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" [(ngModel)]="user.firstName" required name="firstName" #firstName="ngModel" pattern="[A-Za-z]+">
+            <mat-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+              Please enter a valid name.
+            </mat-error>
+          </mat-form-field>
+          
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Last Name</mat-label>
+              <input matInput type="text" [(ngModel)]="user.lastName" required name="lastName" #lastName="ngModel" pattern="[A-Za-z]+">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                Please enter a valid last name.
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-icon matSuffix>drafts</mat-icon>
+              <mat-label>Email</mat-label>
+              <input matInput type="email" [(ngModel)]="user.email" required name="email" #email="ngModel" >
+              <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                Please enter a valid email address.
+              </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" [(ngModel)]="user.password" required name="password"
+              #password="ngModel"
+              [class.is-invalid]="password.invalid && password.touched">
+              <mat-icon matSuffix>key</mat-icon>
+              <small [class.d-none]="password.valid || cpassword.untouched">Password is required!</small>
+            </mat-form-field>
+  
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-icon matSuffix>key</mat-icon>
+              <mat-label>Confirm Password</mat-label>
+              <input matInput type="password" ngModel required name="cpassword"
+              #cpassword="ngModel"
+              [class.is-invalid]="cpassword.invalid && cpassword.touched">
+              <small [class.d-none]="(cpassword.value==password.value) || cpassword.untouched">Password must be same!</small>
+              <small [class.d-none]="cpassword.value==password.value || cpassword.untouched || cpassword.pristine">Password do not match!</small>
+            </mat-form-field>
+  
+          <div class="button-row">
+             <a routerLink = "/user-login" style="text-align: left; text-decoration: none; color: red;">Have an account already?</a>
+            <div align="end"> 
+              <button mat-raised-button type="submit" color="primary">Sign Up</button>&nbsp;
+              <button type="reset" mat-raised-button color="accent">Reset</button>
+            </div>
+          </div>
+        </form>
+      </div>
+  
+ 
+     

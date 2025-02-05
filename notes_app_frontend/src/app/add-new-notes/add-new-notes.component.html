@@ -1,0 +1,59 @@
+<body>
+  <div style=" background-image: linear-gradient( 92.7deg,  rgba(245,212,212,1) 8.5%, rgba(252,251,224,1) 90.2% );  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  position: fixed;
+  background-size: cover;">
+<mat-toolbar color="accent">
+    <!-- <mat-icon>note</mat-icon> -->
+    <!-- <span><a mat-icon-button routerLink="/" style="text-decoration: none;">Notes Application</a></span> -->
+
+    <div *ngIf="loggedIn()">
+        <div><mat-icon>account_circle</mat-icon>&nbsp;
+            <a class="welcome-text" style="white-space: nowrap;">Welcome, {{ currentUser().firstName }}  {{ currentUser().lasttName }}</a></div></div>
+            <span class="example-spacer"></span>
+            <button mat-raised-button routerLink="/view-all-notes"><mat-icon>book</mat-icon>View Notes</button>&nbsp;
+    <button mat-raised-button routerLink="/user-login"><mat-icon>exit_to_app</mat-icon>Logout</button>
+</mat-toolbar>
+
+<div class="container custom-container">
+    <h1 class="mt-3 text-center">ADD NOTE</h1>
+    <hr>
+    <div class="row justify-content-center py-2">
+      <form (submit)="createNote(addPostForm)" #addPostForm="ngForm" class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Title</mat-label>
+          <input name="title" type="text" matInput [(ngModel)]="notes.title" required #title="ngModel"
+            [class.is-invalid]="title.invalid && title.touched">
+          <mat-icon matSuffix>title</mat-icon>
+          <div *ngIf="title.errors && (title.invalid && title.touched)">
+            <small class="alert alert-danger">Title is Mandatory</small>
+          </div>
+        </mat-form-field>
+
+        <br/>
+  
+        <mat-form-field class="example-full-width" appearance="fill" style="height: 200px;">
+          <mat-label>Description</mat-label>
+          <textarea name="description" 
+          matInput [(ngModel)]="notes.description" 
+          required #description="ngModel" pattern="^[a-zA-Z@,;&*+- ]*$" 
+          (input)="limitDescriptionLength($event)"
+            [class.is-invalid]="description.invalid && description.touched"
+        
+          ></textarea>
+          <mat-icon matSuffix>description</mat-icon>
+          <div *ngIf="description.errors && (description.invalid && description.touched)">
+          </div>
+        </mat-form-field>
+  
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+        <div align="end">
+          <button type="submit" class="btn btn-info mr-3">Add</button>
+          <button type="reset" class="btn btn-danger">Clear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>

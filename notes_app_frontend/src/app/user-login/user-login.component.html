@@ -1,0 +1,70 @@
+<body>
+  <div style=" background-image: linear-gradient( 92.7deg,  rgba(245,212,212,1) 8.5%, rgba(252,251,224,1) 90.2% );  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  position: fixed;
+  background-size: cover;">
+<mat-toolbar color="accent">
+  <img src="/assets/logo1.png" alt="" style="height: 50px">
+    <span><a mat-icon-button routerLink="/" style="text-decoration: none;">Notes Application</a></span>
+    <span class="example-spacer"></span>
+    <!-- <button mat-mini-fab routerLink="/">Back</button> -->
+    <button mat-icon-button routerLink="/"><mat-icon>home</mat-icon></button>
+  </mat-toolbar>
+  
+
+ 
+
+  <div class="bootstrap-wrapper">
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="container text-center">
+            <img class="img-fluid" style="width: 100px;" src="/assets/password.jpg" alt="">
+          </div>
+  
+          <h1 class="text-center mt-3">Login here!!</h1>
+  
+          <!-- Creating Forms -->
+  
+          <form #loginForm="ngForm" (ngSubmit)="userLogin()">
+            <small>{{msg}}</small>
+            <mat-form-field class="full-width mt-3" appearance="fill">
+              <mat-label>Email</mat-label>
+              <input name="email" type="email" matInput [(ngModel)]="user.email" required #email="ngModel"
+                [class.is-invalid]="email.invalid && email.touched">
+                <mat-icon matSuffix>drafts</mat-icon>
+              <div *ngIf="email.errors && (email.invalid && email.touched)">
+                <small class="alert alert-danger">Email Id is Mandatory</small>
+              </div>
+            </mat-form-field>
+  
+  
+            <mat-form-field class="full-width mt-2" appearance="fill">
+              <mat-label>Password</mat-label>
+              <input name="password" type="password" matInput [(ngModel)]="user.password" required #password="ngModel"
+                [class.is-invalid]="password.invalid && password.touched">
+                <mat-icon matSuffix>key</mat-icon>
+              <div *ngIf="password.errors && (password.invalid && password.touched)">
+                <small class="alert alert-danger">Password is Mandatory</small>
+              </div>
+            </mat-form-field>
+  
+            <div class="container text-center">
+              <button type="submit" mat-raised-button color="primary">Login</button>&nbsp;
+              <button type="reset" mat-raised-button color="accent">Reset</button>
+            </div>
+              <br>
+
+            <div class="newUser">
+              <!-- <a routerLink="/register">Forgot Password?</a><br> -->
+              <a routerLink="/user-signup" style="text-decoration: none; color: red;">New User? Register Here!</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>

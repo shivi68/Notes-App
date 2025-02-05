@@ -1,0 +1,50 @@
+<body>
+    <div style=" background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );
+  height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  position: fixed;
+  background-size: cover;">
+
+<mat-toolbar color="accent">
+    <!-- <mat-icon>note</mat-icon> -->
+    <!-- <span><a mat-icon-button routerLink="/" style="text-decoration: none;">Notes Application</a></span> -->
+  
+    <div *ngIf="loggedIn()">
+        <div><mat-icon>account_circle</mat-icon>&nbsp;
+            <a class="welcome-text" style="white-space: nowrap;">Welcome, {{ currentUser().firstName }} {{ currentUser().lastName }} </a></div></div>
+    <span class="example-spacer"></span>
+    <button mat-raised-button routerLink="/add-new-notes"><mat-icon>note_add</mat-icon>Add Notes</button>&nbsp;
+    <button mat-raised-button routerLink="/user-login"><mat-icon>exit_to_app</mat-icon>Logout</button>
+</mat-toolbar>
+ 
+   
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let note of notes">
+            <!-- Combined card containing header and mat-card -->
+            <div class="note-card">
+                <!-- Header within the combined card -->
+                <div class="header-card">
+                    <div style="display: flex; justify-content: space-between;">
+                        <h2 >{{ note.title }}</h2>
+                            <button  mat-icon-button color="warn" (click)="deleteNote(note.id)">
+                                <mat-icon>delete</mat-icon>
+                  </button>
+                        
+                    </div>
+                </div>
+                
+                
+                <!-- Mat Card within the combined card -->
+                <mat-card class="mat-card">
+                    <mat-card-content class="mat-card-content">
+                        <p>{{ note.description }}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
